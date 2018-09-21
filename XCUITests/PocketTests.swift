@@ -37,6 +37,7 @@ class PocketTest: BaseTestCase {
     func testTapOnMore() {
         // Tap on More should show Pocket website
         navigator.goto(NewTabScreen)
+        waitforExistence(app.buttons["More"], timeout: 5)
         app.buttons["More"].tap()
         waitUntilPageLoad()
         navigator.nowAt(BrowserTab)
