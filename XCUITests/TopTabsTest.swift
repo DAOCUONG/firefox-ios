@@ -149,11 +149,17 @@ class TopTabsTest: BaseTestCase {
         // Add several tabs from tab tray menu and check that the  number is correct before closing all
         navigator.performAction(Action.OpenNewTabFromTabTray)
         navigator.nowAt(NewTabScreen)
+        if !iPad() {
+            waitforExistence(app.buttons["TabToolbar.tabsButton"])
+        }
         checkNumberOfTabsExpectedToBeOpen(expectedNumberOfTabsOpen: 2)
 
         // Close all tabs and check that the number of tabs is correct
         navigator.performAction(Action.AcceptRemovingAllTabs)
         navigator.nowAt(NewTabScreen)
+        if !iPad() {
+            waitforExistence(app.buttons["TabToolbar.tabsButton"])
+        }
         checkNumberOfTabsExpectedToBeOpen(expectedNumberOfTabsOpen: 1)
         waitforNoExistence(app.collectionViews.cells[urlLabel])
     }
@@ -243,17 +249,25 @@ class TopTabsTestIphone: IphoneOnlyTestCase {
         // This menu is available in HomeScreen or NewTabScreen, so no need to open new websites
         navigator.performAction(Action.OpenNewTabFromTabTray)
         navigator.nowAt(NewTabScreen)
-        navigator.goto(TabTray)
+        if !iPad() {
+            waitforExistence(app.buttons["TabToolbar.tabsButton"])
+        }
         checkNumberOfTabsExpectedToBeOpen(expectedNumberOfTabsOpen: 2)
         closeTabTrayView(goBackToBrowserTab: "home")
 
         navigator.performAction(Action.CloseTabFromTabTrayLongPressMenu)
         navigator.nowAt(NewTabScreen)
+        if !iPad() {
+            waitforExistence(app.buttons["TabToolbar.tabsButton"])
+        }
         checkNumberOfTabsExpectedToBeOpen(expectedNumberOfTabsOpen: 1)
         closeTabTrayView(goBackToBrowserTab: "home")
 
         navigator.performAction(Action.CloseTabFromTabTrayLongPressMenu)
         navigator.nowAt(NewTabScreen)
+        if !iPad() {
+            waitforExistence(app.buttons["TabToolbar.tabsButton"])
+        }
         checkNumberOfTabsExpectedToBeOpen(expectedNumberOfTabsOpen: 1)
         closeTabTrayView(goBackToBrowserTab: "home")
     }

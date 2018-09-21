@@ -284,6 +284,8 @@ class DragAndDropTests: IpadOnlyTestCase {
         if skipPlatform { return }
         navigator.openURL(path(forTestPage: "test-mozilla-book.html"))
         navigator.performAction(Action.BookmarkThreeDots)
+        navigator.nowAt(BrowserTab)
+        navigator.goto(BrowserTabMenu)
         navigator.goto(HomePanel_Bookmarks)
         waitforExistence(app.tables["Bookmarks List"])
         app.tables["Bookmarks List"].cells.staticTexts["The Book of Mozilla"].press(forDuration: 1, thenDragTo: app.textFields["url"])

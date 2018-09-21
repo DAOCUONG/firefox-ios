@@ -37,6 +37,7 @@ class ToolbarTests: BaseTestCase {
         // Navigate to two pages and press back once so that all buttons are enabled in landscape mode.
         navigator.openURL(website1["url"]!)
         waitUntilPageLoad()
+        waitforExistence(app.webViews.links["Mozilla"])
         waitForValueContains(app.textFields["url"], value: website1["value"]!)
 
 
@@ -82,6 +83,7 @@ class ToolbarTests: BaseTestCase {
     func testClearURLTextUsingBackspace() {
         navigator.openURL(website1["url"]!)
         waitUntilPageLoad()
+        waitforExistence(app.webViews.links["Mozilla"])
         waitForValueContains(app.textFields["url"], value: website1["value"]!)
 
         // Simulate pressing on backspace key should remove the text
